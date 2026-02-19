@@ -121,6 +121,24 @@ Edge cases where deductions exceeded gross pay required:
 
 ---
 
+## Real-World Engineering Challenges Solved
+
+- Prevented duplicate payroll runs using database-level locking mechanisms.
+- Implemented negative net pay correction logic to carry forward unpaid balances.
+- Enforced tax wage-base caps (FUTA/SUTA) with year-to-date tracking.
+- Integrated SOAP-based paycard registration APIs with robust error handling.
+- Optimized DB2 queries to reduce payroll processing time across large employee sets.
+
+## Transactional Integrity & Concurrency
+
+Payroll runs were executed within controlled transactional boundaries to prevent:
+
+- Duplicate processing
+- Partial writes
+- Corrupt year-to-date totals
+
+Concurrency locks were implemented to ensure only one payroll process could execute per client at a time. Financial calculations were performed using controlled rounding strategies to maintain cent-level accuracy across aggregate totals.
+
 ## Lessons Learned
 
 Working on financial systems reinforced several critical engineering principles:
